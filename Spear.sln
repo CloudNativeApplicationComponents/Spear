@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30803.129
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{678F4651-8896-4162-81CF-5B0FD8423659}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{064EB9F6-1BC3-4CDF-A507-F939EF0ADBB9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8353E6F8-AC51-4902-8D22-FB31355462FD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Spear.Abstraction", "src\Spear.Abstraction\Spear.Abstraction.csproj", "{33C35F74-7EA8-43BE-B760-A5BF6F11292A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33C35F74-7EA8-43BE-B760-A5BF6F11292A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33C35F74-7EA8-43BE-B760-A5BF6F11292A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33C35F74-7EA8-43BE-B760-A5BF6F11292A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33C35F74-7EA8-43BE-B760-A5BF6F11292A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33C35F74-7EA8-43BE-B760-A5BF6F11292A} = {678F4651-8896-4162-81CF-5B0FD8423659}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7884A419-1C33-4F97-B904-F079B1356AAE}
+	EndGlobalSection
+EndGlobal
