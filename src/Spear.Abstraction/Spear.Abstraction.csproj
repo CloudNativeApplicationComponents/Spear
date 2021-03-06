@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\submodules\Utils\CloudNativeApplicationComponents.Utils\CloudNativeApplicationComponents.Utils.csproj" />
+    <ProjectReference Include="..\..\submodules\Utils\src\CloudNativeApplicationComponents.Utils\CloudNativeApplicationComponents.Utils.csproj" />
   </ItemGroup>
 
 </Project>
