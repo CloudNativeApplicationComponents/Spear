@@ -5,4 +5,8 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\submodules\Utils\CloudNativeApplicationComponents.Utils\CloudNativeApplicationComponents.Utils.csproj" />
+  </ItemGroup>
+
 </Project>

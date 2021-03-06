@@ -5,6 +5,6 @@ namespace Spear.Abstraction
 {
     public interface ISpearDiscoveryClient : IDisposable
     {
-        IEnumerable<IServiceDefinition> DiscoverAllServices();
+        IEnumerable<ISpearServiceDefinition> DiscoverAllServices();
     }
 }
