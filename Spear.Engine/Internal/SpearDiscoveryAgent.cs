@@ -21,6 +21,21 @@ namespace Spear.Engine.Internal
             return _spearPersistancy.GetAll();
         }
 
+        public IEnumerable<ServiceCatalogDefinition> DiscoverAllServices(DataPlane dataPlane)
+        {
+            return _spearPersistancy.GetAll(dataPlane);
+        }
+
+        public IEnumerable<ServiceCatalogDefinition> DiscoverAllServices(string serviceCatalogName)
+        {
+            return _spearPersistancy.GetAll(serviceCatalogName);
+        }
+
+        public ServiceCatalogDefinition? DiscoverService(string serviceCatalogName, DataPlane dataPlane)
+        {
+            return _spearPersistancy.Get(serviceCatalogName, dataPlane);
+        }
+
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
