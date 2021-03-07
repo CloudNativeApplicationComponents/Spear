@@ -18,7 +18,7 @@ namespace Spear.Engine.Internal
 
         public ISpearDiscoveryAgent Discovery()
         {
-            throw new System.NotImplementedException();
+            return new SpearDiscoveryAgent(_spearPersisterFactory.Create());
         }
     }
 }

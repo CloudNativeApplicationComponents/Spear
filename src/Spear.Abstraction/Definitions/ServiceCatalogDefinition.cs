@@ -8,13 +8,15 @@ namespace Spear.Abstraction.Definitions
         public string Name { get; }
         public DataPlane DataPlane { get; }
 
-        public IList<ServiceDefinition> Services { get; }
+        //TODO init
+        public IList<ServiceDefinition> Services { get; set; }
 
         public ServiceCatalogDefinition(string name, DataPlane dataPlane)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException(nameof(name));
-
+            
+            Name = name;
             DataPlane = dataPlane;
         }
 

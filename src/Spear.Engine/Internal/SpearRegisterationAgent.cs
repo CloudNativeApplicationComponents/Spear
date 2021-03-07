@@ -6,8 +6,8 @@ namespace Spear.Engine.Internal
 {
     internal class SpearRegisterationAgent : ISpearRegisterationAgent, IDisposable
     {
-        private bool disposedValue;
-        private ISpearPersister _spearPersistancy;
+        private bool _disposedValue;
+        private readonly ISpearPersister _spearPersistancy;
 
         public SpearRegisterationAgent(ISpearPersister spearPersistancy)
         {
@@ -22,14 +22,14 @@ namespace Spear.Engine.Internal
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (!_disposedValue)
             {
                 if (disposing)
                 {
                     _spearPersistancy.Dispose();
                 }
 
-                disposedValue = true;
+                _disposedValue = true;
             }
         }
 
