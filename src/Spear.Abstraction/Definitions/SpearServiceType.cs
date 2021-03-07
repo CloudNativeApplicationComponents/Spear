@@ -1,6 +1,6 @@
-﻿namespace Spear.Abstraction
+﻿namespace Spear.Abstraction.Definitions
 {
-    public enum SpearServiceMethodType
+    public enum SpearServiceType
     {
         Event = 1,
         Unary = 2,
