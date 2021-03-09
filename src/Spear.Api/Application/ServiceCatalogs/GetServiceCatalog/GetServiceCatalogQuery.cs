@@ -1,26 +1,26 @@
-﻿using Spear.Abstraction;
-using Spear.Abstraction.Definitions;
-using Spear.Api.Application.Queries;
+﻿using Spear.Api.Application.Queries;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Spear.Api.Application.ServiceCatalogs.GetServiceDefinition
 {
-    public class GetServiceCatalogQuery : IQuery<IList<ServiceCatalogDto>>
+    public class GetServiceCatalogQuery : IQuery<IEnumerable<ServiceCatalogDto>>, IValidatableObject
     {
-        public string Name { get; set; }
-        public DataPlane? DataPlane { get; set; }
-    }
+        public string? Name { get; set; }
+        public string? DataPlane { get; set; }
 
-    public record ServiceCatalogDto
-    {
-        public string Name { get; set; }
-        public DataPlane DataPlane { get; set; }
-        public IList<ServiceDefinitionDto> Services { get; set; }
-
-        public record ServiceDefinitionDto
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            public string Name { get; set; }
-            public SpearServiceType MethodType { get; set; }
+            if (!string.IsNullOrWhiteSpace(DataPlane))
+            {
+                var dataPlaneValues = Enum.GetNames(typeof(Abstraction.DataPlane));
+
+                if (!dataPlaneValues.Any(t => string.Equals(t, DataPlane, StringComparison.InvariantCultureIgnoreCase)))
+                    yield return new ValidationResult($"Value must be one of {string.Join(',', dataPlaneValues)}.",
+                    new[] { nameof(DataPlane) });
+            }
         }
     }
 }

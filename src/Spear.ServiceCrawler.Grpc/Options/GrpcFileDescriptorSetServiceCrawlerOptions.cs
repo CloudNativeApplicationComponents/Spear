@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Spear.ServiceCrawler.Grpc.Options
 {
     public class GrpcFileDescriptorSetServiceCrawlerOptions
     {
-        public List<string> Directories { get; set; }
+        [NotNull]
+        [DisallowNull]
+        public List<string>? Directories { get; set; }
     }
 }

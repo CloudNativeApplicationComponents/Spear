@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Spear.Api.Application.ServiceCatalogs;
 using Spear.Api.Application.ServiceCatalogs.GetServiceDefinition;
 using Spear.Api.Application.ServiceCatalogs.RegisterServiceDefinition;
 using System;
@@ -15,31 +15,29 @@ namespace Spear.Api.Controllers
     public class ServiceCatalogesController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
 
-        public ServiceCatalogesController(IMediator mediator, IMapper mapper)
+        public ServiceCatalogesController(IMediator mediator)
         {
             _mediator =
                 mediator ?? throw new ArgumentNullException(nameof(mediator));
-            _mapper =
-                mapper ?? throw new ArgumentNullException(nameof(mapper));
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<Application.ServiceCatalogs.GetServiceDefinition.ServiceCatalogDto>), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetServiceDefinition([FromQuery] GetServiceCatalogQuery request)
+        [ProducesResponseType(typeof(List<ServiceCatalogDto>), (int)HttpStatusCode.OK)]
+        public async Task<IActionResult> GetServiceCatalogDefinition(
+            [FromQuery] GetServiceCatalogQuery request)
         {
-            var serviceDefinitionCommand = _mapper.Map<GetServiceCatalogQuery>(request);
-            var serviceDefinitions = await _mediator.Send(serviceDefinitionCommand);
+            var serviceDefinitions = await _mediator.Send(request);
             return Ok(serviceDefinitions);
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Application.ServiceCatalogs.RegisterServiceDefinition.ServiceCatalogDto), (int)HttpStatusCode.Created)]
-        public async Task<IActionResult> RegisterServiceDefinition([FromBody] RegisterServiceCatalogCommand request)
+        [ProducesResponseType(typeof(ServiceCatalogDto), (int)HttpStatusCode.Created)]
+        public async Task<IActionResult> RegisterServiceCatalogDefinition(
+            [FromBody] RegisterServiceCatalogCommand request)
         {
             var createdServiceDefinition = await _mediator.Send(request);
-            
+
             //This must change to created at route
             return Created(string.Empty, createdServiceDefinition);
         }

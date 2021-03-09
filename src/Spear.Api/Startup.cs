@@ -10,7 +10,7 @@ using Spear.Persistency.Memory.Builder;
 
 namespace Spear.Api
 {
-    public class Startup
+    internal class Startup
     {
         public IConfiguration Configuration { get; }
 
@@ -37,7 +37,6 @@ namespace Spear.Api
             });
 
             services.AddMediatR(typeof(Startup));
-            services.AddAutoMapper(typeof(Startup));
 
             //TODO create builders
             services.AddDefaultSpareEngine();

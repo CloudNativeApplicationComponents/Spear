@@ -3,12 +3,12 @@ using System;
 
 namespace Spear.Api.Application.Commands
 {
-    public interface ICommand : IRequest
+    internal interface ICommand : IRequest
     {
         Guid Id { get; }
     }
 
-    public interface ICommand<out TResult> : IRequest<TResult>
+    internal interface ICommand<out TResult> : IRequest<TResult>
     {
         Guid Id { get; }
     }

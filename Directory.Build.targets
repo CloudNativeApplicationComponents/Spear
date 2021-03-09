@@ -1,0 +1,33 @@
+<Project>
+
+	<PropertyGroup>
+		<MSVersion>5.0.0</MSVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Update="Microsoft.Extensions.Http" Version="$(MSVersion)" />
+		<PackageReference Update="Microsoft.Extensions.Options.ConfigurationExtensions" Version="$(MSVersion)" />
+		<PackageReference Update="Microsoft.Extensions.DependencyInjection.Abstractions" Version="$(MSVersion)" />
+		<PackageReference Update="Microsoft.Extensions.DependencyInjection" Version="$(MSVersion)" />
+		<PackageReference Update="Microsoft.Extensions.Options" Version="$(MSVersion)" />
+		<PackageReference Update="Microsoft.Extensions.Hosting" Version="$(MSVersion)" />
+
+		<PackageReference Update="Google.Protobuf" Version="3.15.5" />
+		<PackageReference Update="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Update="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+		<PackageReference Update="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.3" />
+		<PackageReference Update="Swashbuckle.AspNetCore" Version="5.6.3" />
+		<PackageReference Update="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.10.9" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>$(MSBuildProjectName).UnitTests</_Parameter1>
+		</AssemblyAttribute>
+
+		<AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+			<_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+		</AssemblyAttribute>
+	</ItemGroup>
+
+</Project>

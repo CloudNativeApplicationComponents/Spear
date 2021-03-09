@@ -1,34 +1,42 @@
-﻿using Spear.Abstraction;
-using Spear.Abstraction.Definitions;
-using Spear.Api.Application.Commands;
+﻿using Spear.Api.Application.Commands;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using static Spear.Api.Application.ServiceCatalogs.ServiceCatalogDto;
 
 namespace Spear.Api.Application.ServiceCatalogs.RegisterServiceDefinition
 {
-    public class RegisterServiceCatalogCommand : CommandBase<ServiceCatalogDto>
+    public class RegisterServiceCatalogCommand : CommandBase<ServiceCatalogDto>, IValidatableObject
     {
-        //Could be more abstract
-        public string Name { get; set; }
-        public DataPlane DataPlane { get; set; }
-        public IList<ServiceDefinitionDto> Services { get; set; }
+        [NotNull]
+        [DisallowNull]
+        public string Name { get; set; } = default!;
+        
+        [NotNull]
+        [DisallowNull]
+        public string DataPlane { get; set; } = default!;
+        public IEnumerable<ServiceDefinitionDto> Services { get; set; } = new List<ServiceDefinitionDto>();
 
-        public record ServiceDefinitionDto
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            public string Name { get; set; }
-            public SpearServiceType MethodType { get; set; }
-        }
-    }
+            var dataPlaneEnums = Enum.GetNames(typeof(Abstraction.DataPlane));
 
-    public record ServiceCatalogDto
-    {
-        public string Name { get; set; }
-        public DataPlane DataPlane { get; set; }
-        public IList<ServiceDefinitionDto> Services { get; set; }
+            if (!dataPlaneEnums.Any(t => string.Equals(DataPlane, t, StringComparison.InvariantCultureIgnoreCase)))
+                yield return new ValidationResult($"Value must be one of {string.Join(',', dataPlaneEnums)}.",
+               new[] { nameof(DataPlane) });
 
-        public record ServiceDefinitionDto
-        {
-            public string Name { get; set; }
-            public SpearServiceType MethodType { get; set; }
+            if (Services.Any())
+            {
+                var methodTypes = Enum.GetNames(typeof(Abstraction.Definitions.SpearServiceType));
+
+                if (Services.Select(t => t.MethodType)
+                    .Any(t => !methodTypes.Any(r =>
+                        string.Equals(t, r, StringComparison.InvariantCultureIgnoreCase))))
+                    yield return new ValidationResult($"Value must be one of {string.Join(',', methodTypes)}.",
+                    new[] { nameof(ServiceDefinitionDto.MethodType) });
+            }
         }
     }
 }

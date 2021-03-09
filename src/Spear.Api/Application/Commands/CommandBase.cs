@@ -6,14 +6,12 @@ namespace Spear.Api.Application.Commands
     {
         public Guid Id { get; }
 
-        public CommandBase()
-        {
-            this.Id = Guid.NewGuid();
-        }
+        public CommandBase() : this(Guid.NewGuid())
+        { }
 
         protected CommandBase(Guid id)
         {
-            this.Id = id;
+            Id = id;
         }
     }
 
@@ -21,14 +19,12 @@ namespace Spear.Api.Application.Commands
     {
         public Guid Id { get; }
 
-        protected CommandBase()
-        {
-            this.Id = Guid.NewGuid();
-        }
+        protected CommandBase() : this(Guid.NewGuid())
+        { }
 
         protected CommandBase(Guid id)
         {
-            this.Id = id;
+            Id = id;
         }
     }
 }

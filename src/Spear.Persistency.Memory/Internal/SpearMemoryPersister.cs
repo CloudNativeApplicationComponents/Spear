@@ -1,6 +1,7 @@
 ﻿using Spear.Abstraction;
 using Spear.Abstraction.Definitions;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -62,7 +63,7 @@ namespace Spear.Persistency.Memory.Internal
 
             static ServiceDefinitionCache()
             {
-                ServiceDefinitions = new Dictionary<(string, DataPlane), ServiceCatalogDefinition>();
+                ServiceDefinitions = new ConcurrentDictionary<(string, DataPlane), ServiceCatalogDefinition>();
             }
         }
     }
