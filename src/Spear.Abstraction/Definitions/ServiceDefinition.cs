@@ -15,7 +15,7 @@ namespace Spear.Abstraction.Definitions
             MethodType = methodType;
         }
 
-        public bool Equals(ServiceDefinition other)
+        public bool Equals(ServiceDefinition? other)
         {
             if (other == null)
                 return false;
@@ -25,7 +25,7 @@ namespace Spear.Abstraction.Definitions
 
         public override bool Equals(object obj)
         {
-            return Equals(obj as ServiceCatalogDefinition);
+            return Equals(obj as ServiceDefinition);
         }
 
         public override int GetHashCode()
