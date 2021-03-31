@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace Spear.Api.Application.ServiceCatalogs.RegisterServiceDefinition
 {
-    internal class RegisterServiceCatalogHandler : ICommandHandler<RegisterServiceCatalogCommand, ServiceCatalogDto>
+    internal class ServiceCatalogDefinitionRegisterHandler : ICommandHandler<ServiceCatalogDefinitionRegisterCommand, ServiceCatalogDefinitionDto>
     {
         private readonly ISpearRegisterationAgent _registerationAgent;
 
-        public RegisterServiceCatalogHandler(ISpearEngine registerationAgent)
+        public ServiceCatalogDefinitionRegisterHandler(ISpearEngine registerationAgent)
         {
             _registerationAgent =
                 registerationAgent?.Registeration() ?? throw new ArgumentNullException(nameof(registerationAgent));
         }
 
-        public async Task<ServiceCatalogDto> Handle(
-            RegisterServiceCatalogCommand request,
+        public async Task<ServiceCatalogDefinitionDto> Handle(
+            ServiceCatalogDefinitionRegisterCommand request,
             CancellationToken cancellationToken)
         {
             var serviceCatalog = new ServiceCatalogDefinition(request.Name,

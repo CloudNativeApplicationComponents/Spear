@@ -12,29 +12,29 @@ namespace Spear.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ServiceCatalogesController : ControllerBase
+    public class ServiceCatalogDefinitionsController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public ServiceCatalogesController(IMediator mediator)
+        public ServiceCatalogDefinitionsController(IMediator mediator)
         {
             _mediator =
                 mediator ?? throw new ArgumentNullException(nameof(mediator));
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(List<ServiceCatalogDto>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(List<ServiceCatalogDefinitionDto>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetServiceCatalogDefinition(
-            [FromQuery] GetServiceCatalogQuery request)
+            [FromQuery] GetServiceCatalogDefinitionQuery request)
         {
             var serviceDefinitions = await _mediator.Send(request);
             return Ok(serviceDefinitions);
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(ServiceCatalogDto), (int)HttpStatusCode.Created)]
+        [ProducesResponseType(typeof(ServiceCatalogDefinitionDto), (int)HttpStatusCode.Created)]
         public async Task<IActionResult> RegisterServiceCatalogDefinition(
-            [FromBody] RegisterServiceCatalogCommand request)
+            [FromBody] ServiceCatalogDefinitionRegisterCommand request)
         {
             var createdServiceDefinition = await _mediator.Send(request);
 

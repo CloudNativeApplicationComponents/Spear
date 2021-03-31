@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Spear.Api.Helpers;
 using Spear.Engine.Builder;
 using Spear.Persistency.Memory.Builder;
 
@@ -63,6 +64,8 @@ namespace Spear.Api
             {
                 endpoints.MapControllers();
             });
+
+            app.RegisterSpearCatalogs(Configuration);
         }
     }
 }

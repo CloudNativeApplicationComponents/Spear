@@ -2,14 +2,14 @@
 
 namespace Spear.Client.Internal.SpearHttpClient.Contract
 {
-    internal class ServiceCatalogDto
+    internal class ServiceCatalogDefinitionDto
     {
         public string Name { get; set; }
         public string DataPlane { get; set; }
 
         public IList<ServiceDefinitionDto> Services { get; set; }
 
-        public ServiceCatalogDto(string name, string dataplane, IList<ServiceDefinitionDto> services)
+        public ServiceCatalogDefinitionDto(string name, string dataplane, IList<ServiceDefinitionDto> services)
         {
             Name = name;
             DataPlane = dataplane;

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using static Spear.Api.Application.ServiceCatalogs.ServiceCatalogDto;
+using static Spear.Api.Application.ServiceCatalogs.ServiceCatalogDefinitionDto;
 
 namespace Spear.Api.Application.ServiceCatalogs.RegisterServiceDefinition
 {
-    public class RegisterServiceCatalogCommand : CommandBase<ServiceCatalogDto>, IValidatableObject
+    public class ServiceCatalogDefinitionRegisterCommand : CommandBase<ServiceCatalogDefinitionDto>, IValidatableObject
     {
         [NotNull]
         [DisallowNull]
@@ -24,7 +24,7 @@ namespace Spear.Api.Application.ServiceCatalogs.RegisterServiceDefinition
             var dataPlaneEnums = Enum.GetNames(typeof(Abstraction.DataPlane));
 
             if (!dataPlaneEnums.Any(t => string.Equals(DataPlane, t, StringComparison.InvariantCultureIgnoreCase)))
-                yield return new ValidationResult($"Value must be one of {string.Join(',', dataPlaneEnums)}.",
+                yield return new ValidationResult($"{nameof(DataPlane)} must be one of {string.Join(',', dataPlaneEnums)}.",
                new[] { nameof(DataPlane) });
 
             if (Services.Any())
@@ -34,7 +34,7 @@ namespace Spear.Api.Application.ServiceCatalogs.RegisterServiceDefinition
                 if (Services.Select(t => t.MethodType)
                     .Any(t => !methodTypes.Any(r =>
                         string.Equals(t, r, StringComparison.InvariantCultureIgnoreCase))))
-                    yield return new ValidationResult($"Value must be one of {string.Join(',', methodTypes)}.",
+                    yield return new ValidationResult($"{nameof(ServiceDefinitionDto.MethodType)} must be one of {string.Join(',', methodTypes)}.",
                     new[] { nameof(ServiceDefinitionDto.MethodType) });
             }
         }

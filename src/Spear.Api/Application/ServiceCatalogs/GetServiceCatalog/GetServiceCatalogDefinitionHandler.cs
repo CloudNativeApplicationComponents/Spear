@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace Spear.Api.Application.ServiceCatalogs.GetServiceCatalog
 {
-    internal class GetServiceCatalogHandler : IQueryHandler<GetServiceCatalogQuery, IEnumerable<ServiceCatalogDto>>
+    internal class GetServiceCatalogDefinitionHandler : IQueryHandler<GetServiceCatalogDefinitionQuery, IEnumerable<ServiceCatalogDefinitionDto>>
     {
         private readonly ISpearDiscoveryAgent _discoveryAgent;
 
-        public GetServiceCatalogHandler(ISpearEngine discoveryAgent)
+        public GetServiceCatalogDefinitionHandler(ISpearEngine discoveryAgent)
         {
             _discoveryAgent =
                 discoveryAgent?.Discovery() ?? throw new ArgumentNullException(nameof(discoveryAgent));
         }
 
-        public async Task<IEnumerable<ServiceCatalogDto>> Handle(
-            GetServiceCatalogQuery request,
+        public async Task<IEnumerable<ServiceCatalogDefinitionDto>> Handle(
+            GetServiceCatalogDefinitionQuery request,
             CancellationToken cancellationToken)
         {
             _ = request ?? throw new ArgumentNullException(nameof(request));

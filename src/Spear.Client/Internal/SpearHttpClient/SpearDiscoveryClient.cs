@@ -13,7 +13,7 @@ namespace Spear.Client.Internal.SpearHttpClient
     internal class SpearDiscoveryClient : SpeareHttpClientBase, ISpearDiscoveryClient
     {
         //TODO fix this route
-        private const string _serviceCatalogRoute = "/api/ServiceCataloges";
+        private const string _serviceCatalogRoute = "/api/ServiceCatalogDefinitions";
 
         public SpearDiscoveryClient(HttpClient httpClient,
                                     IOptions<SpearHttpClientOption> option)
@@ -36,7 +36,7 @@ namespace Spear.Client.Internal.SpearHttpClient
 
             using var responseStream = await response.Content.ReadAsStreamAsync();
             var spearCatalogeDtos = await responseStream
-                .ReadAndDeserializeFromJsonAsync<IList<ServiceCatalogDto>>();
+                .ReadAndDeserializeFromJsonAsync<IList<ServiceCatalogDefinitionDto>>();
 
             return spearCatalogeDtos.Select(t => TypeMapper.ToServiceCatalogDefinition(t));
         }

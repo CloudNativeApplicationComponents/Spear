@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Spear.Api.Application.ServiceCatalogs.GetServiceDefinition
 {
-    public class GetServiceCatalogQuery : IQuery<IEnumerable<ServiceCatalogDto>>, IValidatableObject
+    public class GetServiceCatalogDefinitionQuery : IQuery<IEnumerable<ServiceCatalogDefinitionDto>>, IValidatableObject
     {
         public string? Name { get; set; }
         public string? DataPlane { get; set; }
@@ -18,7 +18,7 @@ namespace Spear.Api.Application.ServiceCatalogs.GetServiceDefinition
                 var dataPlaneValues = Enum.GetNames(typeof(Abstraction.DataPlane));
 
                 if (!dataPlaneValues.Any(t => string.Equals(t, DataPlane, StringComparison.InvariantCultureIgnoreCase)))
-                    yield return new ValidationResult($"Value must be one of {string.Join(',', dataPlaneValues)}.",
+                    yield return new ValidationResult($"{nameof(DataPlane)} must be one of {string.Join(',', dataPlaneValues)}.",
                     new[] { nameof(DataPlane) });
             }
         }

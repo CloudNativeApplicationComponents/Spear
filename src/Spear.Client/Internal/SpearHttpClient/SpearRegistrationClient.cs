@@ -14,7 +14,7 @@ namespace Spear.Client.Internal.SpearHttpClient
     internal class SpearRegistrationClient : SpeareHttpClientBase, ISpearRegistrationClient
     {
         //TODO fix this route
-        private const string _serviceRegistrationPath = "/api/ServiceCataloges/";
+        private const string _serviceRegistrationPath = "/api/ServiceCatalogDefinitions/";
 
         public SpearRegistrationClient(
             HttpClient httpClient,
@@ -45,7 +45,7 @@ namespace Spear.Client.Internal.SpearHttpClient
                 await HandleFailedResponse(httpResponse);
 
             using var responseStream = await httpResponse.Content.ReadAsStreamAsync();
-            var response = await responseStream.ReadAndDeserializeFromJsonAsync<ServiceCatalogDto>();
+            var response = await responseStream.ReadAndDeserializeFromJsonAsync<ServiceCatalogDefinitionDto>();
             return TypeMapper.ToServiceCatalogDefinition(response);
         }
     }

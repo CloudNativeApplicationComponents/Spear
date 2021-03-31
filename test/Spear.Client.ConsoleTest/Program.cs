@@ -16,7 +16,7 @@ namespace Spear.Client.ConsoleTest
             //setup our DI
             var serviceProvider = new ServiceCollection()
                 .AddLogging(t => t.AddConsole())
-                .AddSpareHttpClient(t => { t.BaseAddress = new System.Uri("https://localhost:50012"); })
+                .AddSpareHttpClient(t => { t.BaseAddress = new System.Uri("https://localhost:5001"); })
                 .BuildServiceProvider();
 
 

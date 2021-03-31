@@ -2,13 +2,13 @@
 
 namespace Spear.Api.Application.ServiceCatalogs
 {
-    public record ServiceCatalogDto
+    public record ServiceCatalogDefinitionDto
     {
         public string Name { get; set; }
         public string DataPlane { get; set; }
         public IList<ServiceDefinitionDto> Services { get; set; }
 
-        public ServiceCatalogDto(string name, string dataPlane, IList<ServiceDefinitionDto> services)
+        public ServiceCatalogDefinitionDto(string name, string dataPlane, IList<ServiceDefinitionDto> services)
         {
             Name = name;
             DataPlane = dataPlane;

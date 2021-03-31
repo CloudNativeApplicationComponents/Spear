@@ -6,7 +6,7 @@ namespace Spear.Client.Internal.Utilities
 {
     internal static class TypeMapper
     {
-        public static ServiceCatalogDefinition ToServiceCatalogDefinition(ServiceCatalogDto dto)
+        public static ServiceCatalogDefinition ToServiceCatalogDefinition(ServiceCatalogDefinitionDto dto)
         {
             return new ServiceCatalogDefinition(
                 dto.Name,
@@ -15,13 +15,13 @@ namespace Spear.Client.Internal.Utilities
                 new ServiceCatalogDefinition.ServiceDefinition(t.Name, t.MethodType)).ToList());
         }
 
-        public static ServiceCatalogDto ToServiceCatalogDto(ServiceCatalogDefinition serviceCatalogDefinition)
+        public static ServiceCatalogDefinitionDto ToServiceCatalogDto(ServiceCatalogDefinition serviceCatalogDefinition)
         {
-            return new ServiceCatalogDto(
+            return new ServiceCatalogDefinitionDto(
                 serviceCatalogDefinition.Name,
                 serviceCatalogDefinition.DataPlane,
                 serviceCatalogDefinition.Services
-                .Select(t => new ServiceCatalogDto.ServiceDefinitionDto(t.Name, t.MethodType)).ToList());
+                .Select(t => new ServiceCatalogDefinitionDto.ServiceDefinitionDto(t.Name, t.MethodType)).ToList());
         }
     }
 }
